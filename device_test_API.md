@@ -88,7 +88,7 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 | plan_id | Integer | | 对应训练计划ID |
 | time | Data | | 训练时间 |
 | params | [key:value] | | 训练参数 |
-| params.accuracy | Float | | 准确率 |
+| params.accuracy | Integer | | 准确率,0-100 |
 
 ```
 {
@@ -125,4 +125,5 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 ```
 
 ---
+
 
