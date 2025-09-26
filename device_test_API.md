@@ -13,6 +13,7 @@
 | :--- |:---|:---| :--- |
 | start_id | integer | | 要获取的训练计划的起始id |
 | start_time | Date | | 要获取的训练计划的起始时间 |
+| end_time | Date | | 要获取的训练计划的结束时间 |
 | total | integer | | 要获取的训练计划数量 |
 
 - 从start_id或start_time开始，获取total条数据。
@@ -154,6 +155,7 @@
             }
         }
     ]
+
 }
 
 ```
