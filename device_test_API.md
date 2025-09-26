@@ -36,13 +36,15 @@
 | remark | String | 备注 |
 
 ```
+GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-09-02
+
 {
     "code": 0,
     "message": "",
     "plans": [
         {
             "id": 3,
-            "time": "2025-10-13",
+            "time": "2025-09-01",
             "mode_name": "Eshape",
             "updateTime": "2025-09-24 16:17:34:875",
             "params": {
@@ -54,7 +56,7 @@
         },
         {
             "id": 4,
-            "time": "2025-10-14",
+            "time": "2025-09-01",
             "mode_name": "Eshape",
             "updateTime": "2025-09-24 16:17:34:875",
             "params": {
@@ -81,30 +83,32 @@
 
 | 参数名称 | 类型  | 必须 | 描述 |
 | :--- |:---|:---| :--- |
-| dev_record_id | integer | | 数据在设备中的记录ID |
+| dev_record_id | integer | 否 | 数据在设备中的记录ID |
 | type | String | | 训练类型名 |
 | plan_id | Integer | | 对应训练计划ID |
+| time | Data | | 训练时间 |
 | params | [key:value] | | 训练参数 |
+| params.accuracy | Float | | 准确率 |
 
 ```
 {
     "records": [
         {
-            "dev_record_id" : 2,
             "type" : "ShapeCompareRT",
-            "plan_id": 2
+            "plan_id": 3,
+            "time": "2025-02-02 02:22:22:222",
             "params": {
+                "accuracy": 0.23,
                 "question" : "较小物体",
-                "answer" : "较小物体"，
+                "answer" : "较小物体",
                 "latency" : "2.140065",
-                "shape" : "三角形"，
+                "shape" : "三角形",
                 "eye" : "2",
                 "luminance" : "1",
                 "size" : "1",
                 "level" : "5"
             }
-        },
-        ...
+        }
     ]
 }
 ```
@@ -121,3 +125,4 @@
 ```
 
 ---
+
