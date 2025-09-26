@@ -12,12 +12,13 @@
 | 参数名称 | 类型  | 必须 | 描述 |
 | :--- |:---|:---| :--- |
 | start_id | integer | | 要获取的训练计划的起始id |
-| start_time | Date | | 要获取的训练计划的起始时间 |
-| end_time | Date | | 要获取的训练计划的结束时间 |
+| start_time | Date | | 要获取的训练计划的起始日期,2025-09-25 |
+| end_time | Date | | 要获取的训练计划的结束日期，2025-09-26 |
 | total | integer | | 要获取的训练计划数量 |
 
-- 从start_id或start_time开始，获取total条数据。
-- 返回的数据大于start_id或start_time（不包含）。
+- 最多获取total条数据。
+- start_id：返回的数据大于start_id（返回结果不包含此ID）。
+- start_time,end_time：返回日期范围内的数据（包含start_time和end_time，end_time为空返回start_time日期后的所有数据）。
 - 如果start_id和start_time均为空，则从第一条数据开始返回。
 - total默认为20条。
 - start_id优先于start_time。
@@ -27,41 +28,43 @@
 | 参数名称 | 类型 | 描述 |
 | :--- |:---| :--- |
 | id | integer | 训练ID |
-| time | Date | 训练时间 |
+| time | Date | 训练时间，2025-10-13 |
+| updateTime | Date | 记录编辑时间，2025-09-02 16:17:34:875 |
 | mode_name | String | 模式名称 |
+| complete | Bool | 是否已完成训练（有训练记录） |
 | params | [key:value] | 训练参数列表 |
 | remark | String | 备注 |
 
 ```
 {
-    "code": 0
-    "message": null
-    "data": {
-        "plans": [
-            {
-                "mode_name": "VisionRT",
-                "time": "2025-09-02 16:17:34:875",
-                "params": {
-                    "brightness": "1",
-                    "size": "1",
-                    "upDown": "0",
-                    "leftRight": "0",
-                    "frequency": "10"
-                }
+    "code": 0,
+    "message": "",
+    "plans": [
+        {
+            "id": 3,
+            "time": "2025-10-13",
+            "mode_name": "Eshape",
+            "updateTime": "2025-09-24 16:17:34:875",
+            "params": {
+                "Brightness": "0.1",
+                "Size": "3",
+                "Distance": "0.2"
             },
-            {
-                "mode_name": "Grating",
-                "time": "2025-09-02 16:17:34:875",
-                "params": {
-                    "size": "0.15",
-                    "brightness": "1",
-                    "frequency": "10",
-                    "wave": "0",
-                    "contrast": "1"
-                }
-            }
-        ]
-    }
+            "complete": false
+        },
+        {
+            "id": 4,
+            "time": "2025-10-14",
+            "mode_name": "Eshape",
+            "updateTime": "2025-09-24 16:17:34:875",
+            "params": {
+                "Brightness": "0.1",
+                "Size": "3",
+                "Distance": "0.2"
+            },
+            "complete": false
+        }
+    ]
 }
 ```
 
@@ -80,9 +83,8 @@
 | :--- |:---|:---| :--- |
 | dev_record_id | integer | | 数据在设备中的记录ID |
 | type | String | | 训练类型名 |
-| time | Date | | 训练时间 |
+| plan_id | Integer | | 对应训练计划ID |
 | params | [key:value] | | 训练参数 |
-| duration | integer | | 训练持续时间（秒） |
 
 ```
 {
@@ -90,8 +92,7 @@
         {
             "dev_record_id" : 2,
             "type" : "ShapeCompareRT",
-            "time" : "2025-09-02 16:17:34:875",
-            "duration" : 11,
+            "plan_id": 2
             "params": {
                 "question" : "较小物体",
                 "answer" : "较小物体"，
@@ -120,54 +121,3 @@
 ```
 
 ---
-
-### 2.1：创建训练计划
-> 接口地址：`POST` `/v1/admin/training/plan`
->
->创建训练计划
->
-
-- 当前测试接口，通过POST提交计划json后，可通过/v1/user/training/plan获取。
-- 测试数据如下：
-```
-{
-    "plans": [
-        {
-            "mode_name": "VisionRT",
-            "time": "2025-09-02 16:17:34:875",
-            "params": {
-                "brightness": "1",
-                "size": "1",
-                "upDown": "0",
-                "leftRight": "0",
-                "frequency": "10"
-            }
-        },
-        {
-            "mode_name": "Grating",
-            "time": "2025-09-02 16:17:34:875",
-            "params": {
-                "size": "0.15",
-                "brightness": "1",
-                "frequency": "10",
-                "wave": "0",
-                "contrast": "1"
-            }
-        }
-    ]
-
-}
-
-```
-
----
-
-### 2.2：获取训练记录
-> 接口地址：`GET` `/v1/admin/training/record`
->
->创建训练计划
->
-
-- 当前测试接口，通过GET请求，可以获取用户通过/v1/user/training/record提交的数据。
-
-
