@@ -86,7 +86,9 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 | dev_record_id | integer | 否 | 数据在设备中的记录ID |
 | type | String | | 训练类型名 |
 | plan_id | Integer | | 对应训练计划ID |
-| time | Data | | 训练时间 |
+| time | Date | | 训练时间,2025-09-02 16:17:34:875 |
+| completed | Bool | 否 | 是否完成 |
+| duration | Integer | 否 | 训练时长（秒） |
 | params | [key:value] | | 训练参数 |
 | params.accuracy | Integer | | 准确率,0-100 |
 
@@ -94,19 +96,22 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 {
     "records": [
         {
-            "type" : "ShapeCompareRT",
-            "plan_id": 3,
-            "time": "2025-02-02 02:22:22:222",
+            "type": "ShapeCompareRT",
+            "time": "2025-09-02 16:17:34:875",
+            "planId": 3, 
+            "completed":true,
+            "duration" : 11,
             "params": {
-                "accuracy": 23,
-                "question" : "较小物体",
-                "answer" : "较小物体",
-                "latency" : "2.140065",
-                "shape" : "三角形",
-                "eye" : "2",
-                "luminance" : "1",
-                "size" : "1",
-                "level" : "5"
+                "Accuracy": "11",
+                "Question": "测试1-较小物体",
+                "Answer": "较小物体",
+                "Latency": "2.140065",
+                "Shape": "三角形",
+                "Eye": "2",
+                "Luminance": "1",
+                "Size": "1",
+                "Level": "5",
+                "ID": "2"
             }
         }
     ]
@@ -125,6 +130,7 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 ```
 
 ---
+
 
 
 
