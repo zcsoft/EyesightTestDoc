@@ -98,7 +98,7 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
             "plan_id": 3,
             "time": "2025-02-02 02:22:22:222",
             "params": {
-                "accuracy": 0.23,
+                "accuracy": 23,
                 "question" : "较小物体",
                 "answer" : "较小物体",
                 "latency" : "2.140065",
@@ -125,5 +125,6 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 ```
 
 ---
+
 
 
