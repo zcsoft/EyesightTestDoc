@@ -96,7 +96,26 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 {
     "records": [
         {
-            "type": "ShapeCompareRT",
+            "type": "SizeRT",
+            "time": "2025-09-02 16:17:34:875",
+            "planId": 3, 
+            "completed":true,
+            "duration" : 11,
+            "params": {
+                "Accuracy": "11",
+                "Question": "测试1-较小物体",
+                "Answer": "较小物体",
+                "Latency": "2.140065",
+                "Shape": "三角形",
+                "Eye": "2",
+                "Luminance": "1",
+                "Size": "1",
+                "Level": "5",
+                "ID": "2"
+            }
+        },
+        {
+            "type": "SizeRT",
             "time": "2025-09-02 16:17:34:875",
             "planId": 3, 
             "completed":true,
@@ -130,6 +149,7 @@ GET http://47.94.34.9/v1/user/training/plan?start_time=2025-08-31&end_time=2025-
 ```
 
 ---
+
 
 
 
